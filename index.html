@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo.png') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Analysis</title>
+    <style>
+    body, h1, p {
+        margin: 0;
+        padding: 0;
+        
+    }
+    
+    header {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 0;
+    }
+    
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    header h1 {
+        margin: 0;
+    }
+    
+    nav ul {
+        list-style: none;
+        display: flex;
+    }
+    
+    nav ul li {
+        margin-left: 20px;
+    }
+    
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .container {
+        max-width: 810px;
+        margin: 40px auto;
+        text-align: center;
+        height:50px;
+    }
+    audio{
+        margin-top:20px;
+    }
+    textarea{
+        height:50px;
+        width:25px;
+    }
+    
+    textarea, button, #summary {
+       
+        margin-top:50px;
+    } 
+    button {
+        padding: 10px 20px;
+        background-color: #0056b3;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #003f7f;
+    }
+    
+    footer {
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Web Analyze and Debug</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header><br><br><br><br>
+    
+    <div class="container">
+        <input type="textarea" id="urlInput" placeholder="Paste the website URL Here..."><br>
+        <button id="submitButton">Generate Audio</button><br>
+        <button id="playButton" disabled>Play</button><br>
+        <audio id="audioPlayer" controls></audio><br>
+
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/synthesize", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            var audioPlayer = document.getElementById('audioPlayer');
+                            var playButton = document.getElementById('playButton');
+
+                            // Set the audio source to the returned URL
+                            audioPlayer.src = response.audio_url;
+                            audioPlayer.load(); // Load the new audio file
+
+                            // Enable the play button and set up the click event to play the audio
+                            playButton.disabled = false;
+                            playButton.addEventListener('click', function() {
+                                audioPlayer.play();
+                            });
+
+                            alert("Audio generated successfully!");
+                        } else {
+                            alert("Failed to generate audio. Please check the URL and try again.");
+                        }
+                    } else {
+                        alert("Error occurred while processing the request.");
+                    }
+                }
+            };
+
+            // Prepare the data to send
+            var url = encodeURIComponent(document.getElementById('urlInput').value);
+            xhr.send("websiteLink=" + url);
+        });
+    </script>
+        
+    </div>
+    
+    
+    <footer>
+        <p>© 2024 WebAnalysis</p>
+    </footer>
+    
+   
+</body>
+</html>

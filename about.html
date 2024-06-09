@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo.png') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        body, h1, p {
+          margin: 0;
+          padding: 0;
+        }
+        header {
+          background-color: #007bff;
+          color: white;
+          padding: 10px 0;
+        }
+        .header-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+        header h1 {
+          margin: 0;
+        }
+        nav ul {
+          list-style: none;
+          display: flex;
+        }
+        nav ul li {
+          margin-left: 20px;
+        }
+        nav ul li a {
+          color: #fff;
+          text-decoration: none;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        p {
+            line-height: 1.6;
+        }
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+        <h1>Web Analyze and Debug</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+    <div class="container">
+        <h1>About</h1>
+        <p>Welcome to the Text to Speech Synthesis website! This project is designed to convert text content from web pages into spoken audio. Our goal is to make web content more accessible to everyone, especially for users with visual impairments or those who prefer listening over reading.</p>
+        
+        <h2>How It Works</h2>
+        <p>Our service uses a combination of web scraping and text-to-speech technology to achieve this functionality:</p>
+        <ul>
+            <li><strong>Web Scraping:</strong> When you provide a URL, our system extracts the text content from the webpage.</li>
+            <li><strong>Text to Speech:</strong> The extracted text is then converted into speech using advanced text-to-speech technology, generating an audio file that you can listen to.</li>
+        </ul>
+        
+        <h2>Features</h2>
+        <ul>
+            <li>Simple and intuitive interface for ease of use.</li>
+            <li>High-quality speech synthesis with adjustable speed and volume.</li>
+            <li>Support for a wide range of web pages.</li>
+        </ul>
+        
+        <h2>Usage</h2>
+        <p>To use our service, simply enter the URL of the webpage you want to convert, click the "Submit" button, and wait for the audio to be generated. Once the audio is ready, you can play it directly on our website using the built-in audio player.</p>
+        
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feedback, or suggestions, please feel free to <a href="contact">contact us</a>.</p>
+        
+        <p>Thank you for using our Text to Speech Synthesis service!</p>
+    </div>
+</body>
+</html>
